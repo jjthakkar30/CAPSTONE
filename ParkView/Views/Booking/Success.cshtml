@@ -1,0 +1,25 @@
+﻿@model BookingViewModel
+@inject IHotelRepo _hotelRepo;
+@{
+  Hotel _hotel = _hotelRepo.GetHotelById(Model._booking.HotelId);
+}
+
+<h1 style="text-align:center; margin-top:8%">BOOKING SUCCESSFUL</h1>
+
+<div class="card mb-3" style="max-width: 1000px; max-height: 800px; margin-left:20%; margin-top:3%;">
+  <div class="row g-0">
+    <div class="card text-center">
+      <div class="card-header">Congratulations @Model._user.FirstName, Your Booking is Successful</div>
+      <div class="card-body">
+        <h5 class="card-title">Booking Details:</h5>
+        <p class="card-text">Room Type: @Model._booking.RoomType</p>
+        @*<p class="card-text">Hotel Name: @_hotel.Location</p>*@
+        <p class="card-text">Check-In Date: @Model._booking.CheckInDate.ToString("dd-mm-yyyy")</p>
+        <p class="card-text">Check-Out date: Check-In Date:@Model._booking.CheckOutDate.ToString("dd-mm-yyyy")</p>
+        <p class="card-text">Amount Paid: @Model._booking.BillAmount</p>
+        <a href="#" class="btn btn-primary">Download Invoice</a>
+      </div>
+      <div class="card-footer text-body-secondary">Booked On: @Model._booking.BookingDate.ToString("dd-mm-yyyy")</div>
+    </div>
+  </div>
+</div>

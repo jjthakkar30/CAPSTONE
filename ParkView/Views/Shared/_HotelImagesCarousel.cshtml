@@ -1,0 +1,78 @@
+﻿<style>
+  .carousel-inner {
+    position: relative;
+    z-index: -10;
+  }
+
+  .carousel-item {
+    background: #eee;
+    z-index: 1;
+    border-radius: 6px;
+  }
+
+  .carousel-item:after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0,0,0,0.3);
+  }
+
+  .centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 10;
+    transform: translate(-50%, -50%);
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 70px;
+    color: white;
+    -webkit-text-stroke: 1px #383d52;
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: bolder;
+  }
+
+  .centered-button {
+    position: absolute;
+    top: 75%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .action-btn-black {
+    background-color: black;
+    color: white;
+    border-color: black;
+  }
+</style>
+
+
+<div id="carouselExampleFade" class="carousel slide carousel-fade " data-bs-ride="carousel">
+  <div class="centered"><p>TAKING  LUXURY TO A NEW LEVEL</p></div>
+  <div class="centered-button">
+    <a class="btn btn-primary btn-lg action-btn-black" asp-controller="Booking" asp-action="BookingForm">BOOK YOUR STAY</a>
+  </div>
+  <div class="carousel-inner">
+    <div class="carousel-item active " data-bs-interval="2000">
+      <img src="/Images/hotel_carousel_3.jpg" class="d-block" style="width:100%; height:100vh;" alt="...">
+    </div>
+    <div class="carousel-item" data-bs-interval="2000">
+      <img src="/Images/hotel_1.jpg" class="d-block" style="width:100%; height:100vh" alt="...">
+    </div>
+    <div class="carousel-item" data-bs-interval="2000">
+      <img src="/Images/hotel_2.jpg" class="d-block" style="width:100%; height:100vh" alt="...">
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>

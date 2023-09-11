@@ -1,0 +1,107 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using System.Security.Claims;
+
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+@inject ApplicationDbContext _context;
+
+@{
+}
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+<style>
+  .nav-item {
+    margin: 0 10px;
+  }
+
+  .action-btn-black {
+    background-color: black;
+    color: white;
+    border-color: black;
+  }
+
+    .action-btn-black:hover {
+      background-color: white;
+      color: black;
+      border-color: black;
+    }
+
+  .action-btn-white {
+    background-color: white;
+    color: black;
+    border-color: black;
+  }
+
+    .action-btn-white:hover {
+      background-color: grey;
+      color: black;
+      border-color: black;
+    }
+</style>
+
+<ul class="navbar-nav">
+  @if (SignInManager.IsSignedIn(User))
+  {
+    var claimIdentity = (ClaimsIdentity)User.Identity;
+    var userId = claimIdentity.FindFirst(ClaimTypes.NameIdentifier).Value;
+    AppUser _user = (AppUser)_context.Users.FirstOrDefault(u => u.Id == userId);
+    @*<li class="nav-item">
+      <a id="manage" class="btn btn-primary action-btn action-btn-black" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Your Profile</a>
+    </li>
+    <li class="nav-item">
+      <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+        <button id="logout" type="submit" class="btn btn-primary action-btn action-btn-black">Logout</button>
+      </form>
+    </li>*@
+    <li class="nav-item">
+      <a asp-controller="AppUser" asp-action="Cart" asp-route-userid="@_user.Id" class="btn btn-primary action-btn action-btn-black">Cart</a>
+    </li>
+    <li class="nav-item">
+      <div class="dropdown">
+        <button class="btn btn-primary dropdown-toggle action-btn-black" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Profile
+        </button>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" asp-controller="AppUser" asp-action="Bookings" asp-route-userid="@_user.Id">My Bookings</a></li>
+          <li><a class="dropdown-item" asp-area="Identity" asp-page="/Account/Manage/Index">Account Settings</a></li>
+          <li>
+            <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+              <button id="logout" type="submit" class="btn btn-primary action-btn action-btn-black" style="width:100%;">Logout</button>
+            </form>
+          </li>
+        </ul>
+      </div>
+    </li>
+  }
+  else
+  {
+    <li class="nav-item">
+      <form id="register-form" class="form-inline" asp-area="Identity" asp-page="/Account/Register">
+        <button id="register" class="btn btn-primary action-btn action-btn-black" type="submit">Register</button>
+        @*<a class="nav-link text-dark" id="register" asp-area="Identity" asp-page="/Account/Register">Register</a>*@
+      </form>
+    </li>
+    <li class="nav-item">
+      <form id="login-form" class="form-inline" asp-area="Identity" asp-page="/Account/Login">
+        <button id="login" class="btn btn-primary action-btn action-btn-black" type="submit">Login</button>
+        @*<a class="nav-link text-dark" id="login" asp-area="Identity" asp-page="/Account/Login">Login</a>*@
+      </form>
+    </li>
+  }
+</ul>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+<script>
+  var actionBtn = document.querySelectorAll('action-btn');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY >= 100) {
+      actionBtn.classList.remove('action-btn-black');
+      actionBtn.classList.add('action-btn-white');
+    }
+    else if (window.scrollY < 100) {
+      actionBtn.classList.remove('action-btn-white');
+      actionBtn.classList.add('action-btn-black');
+    }
+
+  });
+</script>

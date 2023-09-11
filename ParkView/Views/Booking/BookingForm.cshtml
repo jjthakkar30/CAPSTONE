@@ -1,0 +1,152 @@
+﻿@model BookingViewModel
+@{
+  ViewData["Title"] = "BookingForm";
+  @inject IHotelRepo _hotelRepo;
+  IEnumerable<Hotel> hotels = _hotelRepo.AllHotels;
+}
+
+<br /><br /><br /><br />
+
+<h4 style="margin-top: 150px;">HOTEL BOOKING</h4>
+
+<hr />
+
+<div class="row">
+
+  <div class="col-md-8">
+    <form asp-action="InitiateBookingPayment" id="form">
+
+      <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+      <div class="input-group mb-3">
+
+        <button style="margin-left:20px;" class="btn btn-outline-secondary" type="button">Location</button>
+
+        <select asp-for="@Model._booking.HotelId" class="form-select" id="inputGroupSelect0" aria-label="Example select with button addon">
+
+          <option selected>Select</option>
+          @foreach(Hotel hotel in hotels)
+          {
+            <option value="@hotel.HotelId">@hotel.Location</option>
+          }
+        </select>
+
+        <button style="margin-left:20px;" class="btn btn-outline-secondary" type="button">Room Type</button>
+
+        <select asp-for="@Model._booking.RoomType" class="form-select" id="inputGroupSelect1" aria-label="Example select with button addon">
+
+          <option selected>Select</option>
+
+          <option value=@Rooms.Types.PresidentialSuite>Presidential Suite</option>
+
+          <option value=@Rooms.Types.Executive>Executive</option>
+
+          <option value=@Rooms.Types.SuperDeluxe>Super Deluxe</option>
+
+          <option value=@Rooms.Types.Deluxe>Deluxe</option>
+
+        </select>
+
+        <label style="margin-left:20px;" asp-for="@Model._booking.CheckInDate">CheckIn Date:</label>
+        <input style="margin-left:10px;" asp-for="@Model._booking.CheckInDate" type="date" id="CheckIn" name="checkInDate" asp-format="{0:dd-MM-yyyy}" value="@DateTime.Now.ToString("dd-mm-yyyy")" min=@DateTime.Now.ToString("dd-mm-yyyy") />
+
+        <label style="margin-left:20px;" asp-for="@Model._booking.CheckOutDate">CheckOut Date:</label>
+        <input style="margin-left:10px;" asp-for="@Model._booking.CheckOutDate" type="date" id="CheckOut" name="checkOutDate" asp-format="{0:dd-MM-yyyy}" value="@DateTime.Now.AddDays(1).ToString("dd-mm-yyyy")" min=@DateTime.Now.AddDays(1).ToString("dd-mm-yyyy") />
+      </div>
+
+
+
+      <div class="form-group" style="margin-left:20px;">
+
+        <label asp-for="@Model._booking.CountAdult" class="control-label">Number of Adults</label>
+
+        <input asp-for="@Model._booking.CountAdult" id="adults" class="form-control" value="1" min="1" />
+
+        <span asp-validation-for="@Model._booking.CountAdult" class="text-danger"></span>
+
+      </div>
+
+      <div class="form-group" style="margin-left:20px;">
+
+        <label asp-for="@Model._booking.CountChildren_5To18" class="control-label">Number of Children</label>
+
+        <input asp-for="@Model._booking.CountChildren_5To18" type="number" id="children" class="form-control" value="0" min="0" />
+
+        <span asp-validation-for="@Model._booking.CountChildren_5To18" class="text-danger"></span>
+
+      </div>
+
+
+
+      <div class="form-group" style="margin-left:20px;">
+
+        <label asp-for="@Model._booking.RoomCount" class="control-label">Number of Rooms</label>
+
+        <input asp-for="@Model._booking.RoomCount" id="RoomCount" class="form-control" value="1" min="1" />
+
+        <span asp-validation-for="@Model._booking.RoomCount" class="text-danger"></span>
+
+      </div>
+
+
+
+      <div class="form-group" style="margin-left:20px;">
+
+        <label asp-for="@Model._booking.ExtraBedsCount" class="control-label">Extra Beds Required</label>
+
+        <input asp-for="@Model._booking.ExtraBedsCount" id="ExtraBeds" class="form-control" />
+
+        <span asp-validation-for="@Model._booking.ExtraBedsCount" class="text-danger"></span>
+
+      </div>
+
+
+
+      <div class="form-group" style="margin-left:20px;">
+
+        <label asp-for="@Model._booking.BillAmount" class="control-label">Total Bill Amount</label>
+
+        <input asp-for="@Model._booking.BillAmount" class="form-control" value="10000" disabled="true" />
+
+        <span asp-validation-for="@Model._booking.BillAmount" class="text-danger"></span>
+
+      </div>
+
+      <div class="mb-3 form-check" style="margin-left:20px;">
+
+        <input type="checkbox" asp-for="@Model._booking.IfCabSelected" class="form-check-input" id="exampleCheck1">
+
+        <label class="form-check-label" asp-for="@Model._booking.IfCabSelected">Require Cab Service (Our People will get in touch with you for further Details)</label>
+
+      </div>
+
+      <div class="form-group" style="margin-left:20px;">
+
+        <button type="button" class="btn btn-primary" asp-controller="AppUser" asp-action="SaveBooking">Save Booking</button>
+        <button style="margin-left:5px;" type="submit" class="btn btn-primary" asp-controller="AppUser" asp-action="AddToCart">Add To Cart</button>
+        <button style="margin-left:5px;" type="submit" class="btn btn-primary">Continue to Payment</button>
+      </div>
+
+    </form>
+
+  </div>
+
+</div>
+<script>
+  document.getElementById("inputGroupSelect0").addEventListener("change", (e) => {
+    console.log(e.target.value);
+    @Model._booking.HotelId = e.target.value;
+  })
+  var form = document.getElementById("form");
+
+  //form.addEventListener("change", (e) => {
+  //});
+</script>
+
+@section Scripts {
+
+  @{
+    await Html.RenderPartialAsync("_ValidationScriptsPartial");
+  }
+
+}

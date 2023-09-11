@@ -1,0 +1,16 @@
+﻿@model IEnumerable<Booking>
+
+@foreach(Booking b in Model) {
+	<p>Booking</p>
+	<p>user id: @b.AppUserEmail</p>
+	<p>check in date: @b.CheckInDate</p>
+	<p>check out date: @b.CheckOutDate</p>
+	<p>room type: @b.RoomType</p>
+	<p>room count: @b.RoomCount</p>
+	<p>beds count: @b.ExtraBedsCount</p>
+	<p>cab: @b.IfCabSelected</p>
+	<p>bill amount: @b.BillAmount</p>
+	<p>adults: @b.CountAdult</p>
+	<p>children: @b.CountChildren_5To18</p>
+	<br /><br />
+}

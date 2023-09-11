@@ -1,0 +1,10 @@
+﻿@model Hotel
+
+<div class="card" style="width: 18rem;">
+  <img src=@Model.ImgUrl class="card-img-top" alt="..." width="400" height="200">
+  <div class="card-body">
+    <h5 class="card-title">THE PARK VIEW | @Model.Location</h5>
+    <p class="card-text align-content-center">Starting from Rs <b>10000 /-</b> </p>
+    <a asp-controller="Hotels" asp-action="HotelPage" asp-route-location="@Model.Location" class="stretched-link"></a>
+  </div>
+</div>

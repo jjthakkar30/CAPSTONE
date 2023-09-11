@@ -1,0 +1,190 @@
+﻿@{
+  //var claimIdentity = (System.Security.Claims.ClaimsIdentity)User.Identity;
+  //var userId = claimIdentity.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier).Value;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>@ViewData["Title"] - ParkView</title>
+  <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+  <link rel="stylesheet" href="~/ParkView.styles.css" asp-append-version="true" />
+
+  <style>
+
+    .navbar {
+      transition: all 1s;
+      z-index: 20;
+    }
+
+    .navbar-scrolled {
+      background-color: #000;
+    }
+
+    header {
+      z-index: 20;
+    }
+
+    #Title {
+      margin-top: 10px;
+    }
+
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="navbar navbar-expand-sm fixed-top navbar-light">
+      <div class="container">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar1">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand" asp-controller="Home" asp-action="Index" style="margin-left:330px;">
+          <img id="logo-img" src="/Images/logo-light.png" alt="Bootstrap" width="100" height="100">
+        </a>
+        <a class="navbar-brand" asp-controller="Home" asp-action="Index"><p id="Title" style="width: 500px; font-family:'Times New Roman'; font-size:50px; text-align:center; font-weight:bolder">THE PARKVIEW</p></a>
+        <div class="collapse navbar-collapse" id="navbar1">
+          <div class="d-grid gap-2 d-md-flex justify-content-md-end" style="margin-left:100px;">
+            @*<button class="btn btn-outline-primary btn-lg" type="button" style=" border-radius:20px;">SIGN UP</button>
+            <button class="btn btn-primary btn-lg" type="button" style="background-color:#1c2331; border-radius:20px;">LOG IN</button>*@
+            <partial name="_LoginPartial" />
+          </div>
+        </div>
+      </div>
+    </nav>
+    @*<video autoplay loop muted plays-inline class="back-video"><source src="/Videos/hotel_video_3.mp4" type="video/mp4"></video>*@
+    @*<img src="/Images/hotel_carousel_3.jpg"  alt="No Image" style="width:100%; height:100vh;"/>*@
+    @*<nav class="navbar bg-body-tertiary">
+    <div class="container-fluid">
+    <a class="navbar-brand" href="#">
+    <img src="/Images/parkview_logo_1.webp" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+    Bootstrap
+    </a>
+    </div>
+    </nav>*@
+  </header>
+
+  <main role="main" class="pb-3 main">
+    @RenderBody()
+  </main>
+
+  <!-- Remove the container if you want to extend the Footer to full width. -->
+  <div>
+    <!-- Footer -->
+    <footer class="text-center text-lg-start text-white"
+            style="background-color: #1c2331">
+      <!-- Section: Links  -->
+      <section class="">
+        <br />
+        <div class="container text-center text-md-start mt-5">
+          <!-- Grid row -->
+          <div class="row mt-3">
+            <!-- Grid column -->
+            <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+              <!-- Content -->
+              <h6 class="text-uppercase fw-bold">ParkView</h6>
+              <hr class="mb-4 mt-0 d-inline-block mx-auto"
+                  style="width: 60px; background-color: #7c4dff; height: 2px" />
+              <p>
+                ParkView is the largest Luxury hotel chain in India. Spread across
+                20 states, The ParkView group of Hotels is providing its customors a
+                Luxurious Hospitality since 1980.
+              </p>
+            </div>
+            <!-- Grid column -->
+            <!-- Grid column -->
+            <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+              <!-- Links -->
+              <h6 class="text-uppercase fw-bold">TOP LOCATIONS</h6>
+              <hr class="mb-4 mt-0 d-inline-block mx-auto"
+                  style="width: 60px; background-color: #7c4dff; height: 2px" />
+              <p>
+                <a href="#!" class="text-white">Bangalore</a>
+              </p>
+              <p>
+                <a href="#!" class="text-white">Chennai</a>
+              </p>
+              <p>
+                <a href="#!" class="text-white">Mumbai</a>
+              </p>
+              <p>
+                <a href="#!" class="text-white">Delhi</a>
+              </p>
+            </div>
+            <!-- Grid column -->
+            <!-- Grid column -->
+            <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+              <!-- Links -->
+              <h6 class="text-uppercase fw-bold">Useful links</h6>
+              <hr class="mb-4 mt-0 d-inline-block mx-auto"
+              <p>
+                <a asp-controller="Home" asp-action="Services" class="text-white">Services</a>
+              </p>
+              <p>
+                <a asp-controller="Home" asp-action="About" class="text-white">About</a>
+              </p>
+              <p>
+                <a asp-controller="Home" asp-action="Contact" class="text-white">Contact us</a>
+              </p>
+            </div>
+            <!-- Grid column -->
+            <!-- Grid column -->
+            <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+              <!-- Links -->
+              <h6 class="text-uppercase fw-bold">Developer Info</h6>
+              <hr class="mb-4 mt-0 d-inline-block mx-auto"
+                  style="width: 60px; background-color: #7c4dff; height: 2px" />
+              <p> Jinil & Devwrat</p>
+              <p> developers@parkview.com</p>
+              <p> + 91 94082 55536</p>
+              <p> + 91 87709 80200</p>
+            </div>
+            <!-- Grid column -->
+          </div>
+          <!-- Grid row -->
+        </div>
+      </section>
+
+    </footer>
+  </div>
+
+  <footer class="footer text-muted" style="background-color:#1c2331">
+    <div class="text-center" style="color:white;">
+      &copy; 2023 - ParkView - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+    </div>
+
+
+  </footer>
+
+
+
+  <script src="~/lib/jquery/dist/jquery.min.js"></script>
+  <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="~/js/site.js" asp-append-version="true"></script>
+
+
+  <script>
+    const navEl = document.querySelector('nav');
+    var compTitle = document.getElementById('Title');
+    var logo = document.getElementById('logo-img');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY >= 100) {
+        navEl.classList.add('navbar-scrolled');
+        compTitle.style.color = "white";
+        $("#logo-img").attr("src", "/Images/logo-dark.png");
+      }
+      else if (window.scrollY < 100) {
+        navEl.classList.remove('navbar-scrolled');
+        compTitle.style.color = "black";
+        $("#logo-img").attr("src", "/Images/logo-light.png");
+      }
+
+    });
+  </script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

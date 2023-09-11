@@ -1,0 +1,20 @@
+﻿@model Booking
+
+<div class="card mb-3" style="max-width: 1000px; max-height: 800px; margin-left:20%; margin-top:3%;">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img src="/Images/deluxe_1.jpg" class="img-fluid rounded-start" alt="..." height="100%" width="100%">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">Room Type: @Model.RoomType</h5>
+        <br />
+        <h5 class="card-title" style="display:inline">Number of Adults: @Model.CountAdult</h5>
+        <h5 class="card-title" style="display:inline; margin-left:10%;">Number of Kids: @Model.CountChildren_5To18</h5>
+        <br />
+        <h5 class="card-title">CheckIn Date: @Model.CheckInDate</h5>
+        <h5 class="card-title">CheckOut Date: @Model.CheckOutDate</h5>
+      </div>
+    </div>
+  </div>
+</div>
